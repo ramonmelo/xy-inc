@@ -20,6 +20,9 @@ class DBManager(object):
         assert type(name) is str
         assert type(x) is int
         assert type(y) is int
+        assert len(name) >= 1
+        assert x >= 0
+        assert y >= 0
 
         cursor = self.db.cursor()
 
