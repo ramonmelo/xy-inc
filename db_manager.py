@@ -1,6 +1,6 @@
 
 import sqlite3 as sql
-from math import sqrt
+from math import sqrt, pow
 
 class DBManager(object):
 
@@ -31,40 +31,32 @@ class DBManager(object):
 
         self.db.commit()
 
-    # def get_poi(self, name):
-    #     """Return a single POI by its name"""
-    #     cursor = self.db.cursor()
-
-    #     result = cursor.execute('SELECT :columns FROM poi WHERE name = :name', {
-    #         'columns': COLUMN_NAMES.join(','),
-    #         'name': name
-    #     })
-    #     row = result.fetchone()
-
-    #     # if row:
-    #         # return row
-
-    #     return row
-
-    def list_poi(self, x = None, y = None, distance = None):
+    def list_poi(self, x_base = None, y_base = None, distance = None):
         """List all POI within the range"""
 
-        # has_filter = False
+        has_filter = False
 
         sql = 'SELECT id, name, x, y FROM poi'
 
-        # if x or y or distance:
-        #     assert type(x) is int
-        #     assert type(y) is int
-        #     assert type(distance) is int
+        if x_base or y_base or distance:
+            assert type(x_base) is int
+            assert type(y_base) is int
+            assert type(distance) is int
 
-        #     has_filter = True
+            has_filter = True
 
         cursor = self.db.cursor()
 
         result = []
 
         for idx, name, x, y in cursor.execute(sql):
+
+            if has_filter:
+                diff = sqrt( pow(x_base - x, 2) + pow(y_base - y, 2) )
+
+                if diff > distance:
+                    continue
+
             result.append({
                 'id': idx,
                 'name': name,
