@@ -41,10 +41,10 @@ class DBManager(object):
 
         sql = 'SELECT id, name, x, y FROM poi'
 
-        if x_base or y_base or distance:
-            assert type(x_base) is int
-            assert type(y_base) is int
-            assert type(distance) is int
+        if x_base and y_base and distance:
+            x_base = int(x_base)
+            y_base = int(y_base)
+            distance = int(distance)
 
             has_filter = True
 
