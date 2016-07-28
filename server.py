@@ -1,7 +1,7 @@
 
 import os
 import sqlite3
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 
 from db_manager import DBManager
 
@@ -18,7 +18,15 @@ db = DBManager(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return redirect(url_for('create'))
+
+@app.route("/create/")
+def create():
+    return render_template('create.html')
+
+@app.route("/find/")
+def find():
+    return render_template('find.html')
 
 # API
 
