@@ -32,21 +32,30 @@ def find():
 
 @app.route("/create_poi/", methods=['POST'])
 def create_poi():
-    name = request.args.get('name', None)
-    x = request.args.get('x', None)
-    y = request.args.get('y', None)
 
+    name, x, y = None, None, None
     out = {
         'error': False,
         'msg': 'Saved with success.'
     }
 
     try:
+        name = request.form['name']
+        x = request.form['x']
+        y = request.form['y']
+
         if name and x and y:
             x = int(x)
             y = int(y)
 
             db.create_poi(name, x, y)
+        else:
+            raise KeyError
+
+    except KeyError:
+        out['msg'] = 'Please, send all data values.'
+        out['error'] = True
+
     except (AssertionError, TypeError):
         out['msg'] = 'Please, send valid values.'
         out['error'] = True
