@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>XY Inc - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
 
@@ -27,7 +29,7 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             {% block content %}{% endblock %}
         </div>
