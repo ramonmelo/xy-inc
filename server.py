@@ -18,5 +18,13 @@ db = DBManager(app)
 def hello():
     return "Hello World!"
 
+@app.route("/create")
+def create_poi():
+    pass
+
+@app.route("/list")
+def list_poi():
+    pass
+
 if __name__ == "__main__":
     app.run()
