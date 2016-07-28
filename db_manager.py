@@ -38,13 +38,10 @@ class DBManager(object):
         """List all POI within the range"""
 
         has_filter = False
-
-        sql = 'SELECT id, name, x, y FROM poi'
-
         if x_base and y_base and distance:
-            x_base = int(x_base)
-            y_base = int(y_base)
-            distance = int(distance)
+            assert type(x_base) is int
+            assert type(y_base) is int
+            assert type(distance) is int
 
             has_filter = True
 
@@ -52,7 +49,7 @@ class DBManager(object):
 
         result = []
 
-        for idx, name, x, y in cursor.execute(sql):
+        for idx, name, x, y in cursor.execute('SELECT id, name, x, y FROM poi'):
 
             if has_filter:
                 diff = sqrt( pow(x_base - x, 2) + pow(y_base - y, 2) )
