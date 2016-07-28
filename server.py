@@ -30,11 +30,16 @@ def find():
 
 # API
 
-@app.route("/create", methods=['POST'])
+@app.route("/create_poi/", methods=['POST'])
 def create_poi():
     name = request.args.get('name', None)
     x = request.args.get('x', None)
     y = request.args.get('y', None)
+
+    out = {
+        'error': False
+        'msg': 'Saved with success.'
+    }
 
     try:
         if name and x and y:
@@ -42,18 +47,22 @@ def create_poi():
             y = int(y)
 
             db.create_poi(name, x, y)
-            out = "Saved with success."
-
     except (AssertionError, TypeError):
-        out = "Please, send valid values."
+        out['msg'] = 'Please, send valid values.'
+        out['error'] = True
 
-    return out
+    return jsonify(out)
 
-@app.route("/list", methods=['GET'])
+@app.route("/list_poi/", methods=['GET'])
 def list_poi():
     x = request.args.get('x', None)
     y = request.args.get('y', None)
     distance = request.args.get('distance', None)
+
+    out = {
+        'error': False
+        'msg': ''
+    }
 
     try:
         if x and y and distance:
@@ -61,11 +70,12 @@ def list_poi():
             y = int(y)
             distance = int(distance)
 
-        out = jsonify( db.list_poi(x, y, distance) )
+        out['result'] = db.list_poi(x, y, distance)
     except (AssertionError, TypeError):
-        out = "Please, send valid values."
+        out['msg'] = "Please, send valid values."
+        out['error'] = True
 
-    return out
+    return jsonify(out)
 
 if __name__ == "__main__":
     app.run()
