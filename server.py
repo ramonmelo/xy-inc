@@ -1,7 +1,7 @@
 
 import os
 import sqlite3
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 from db_manager import DBManager
 
@@ -17,8 +17,8 @@ db = DBManager(app)
 # Views
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def index():
+    return render_template('index.html')
 
 # API
 
