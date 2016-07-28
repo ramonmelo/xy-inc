@@ -1,7 +1,7 @@
 
 import os
 import sqlite3
-from flask import Flask
+from flask import Flask, jsonify, request
 
 from db_manager import DBManager
 
@@ -14,17 +14,30 @@ app.config.update(dict(
 
 db = DBManager(app)
 
+# Views
+
 @app.route("/")
 def hello():
     return "Hello World!"
 
-@app.route("/create")
+# API
+
+@app.route("/create", methods=['POST'])
 def create_poi():
     pass
 
-@app.route("/list")
+@app.route("/list", methods=['GET'])
 def list_poi():
-    pass
+    x = request.args.get('x', None)
+    y = request.args.get('y', None)
+    distance = request.args.get('distance', None)
+
+    try:
+        out = jsonify( db.list_poi(x, y, distance) )
+    except (ValueError, TypeError):
+        out = "Please, send valid values."
+
+    return out
 
 if __name__ == "__main__":
     app.run()
