@@ -37,7 +37,7 @@ def create_poi():
     y = request.args.get('y', None)
 
     out = {
-        'error': False
+        'error': False,
         'msg': 'Saved with success.'
     }
 
@@ -60,7 +60,7 @@ def list_poi():
     distance = request.args.get('distance', None)
 
     out = {
-        'error': False
+        'error': False,
         'msg': ''
     }
 
