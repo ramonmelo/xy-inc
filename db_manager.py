@@ -8,10 +8,11 @@ class DBManager(object):
 
     def __init__(self, app):
         """Init the connection with the database"""
-        self.db = sql.connect(app.config['DATABASE'])
         self.app = app
 
     def init_db(self):
+        self.db = sql.connect(self.app.config['DATABASE'])
+
         with open(self.app.config['DATABASE_SCHEME'], 'r') as scheme_file:
 
             cursor = self.db.cursor()
