@@ -46,6 +46,7 @@ def create_poi():
         y = request.form['y']
 
         if name and x and y:
+            name = str(name)
             x = int(x)
             y = int(y)
 
@@ -57,7 +58,7 @@ def create_poi():
         out['msg'] = 'Please, send all data values.'
         out['error'] = True
 
-    except (AssertionError, TypeError):
+    except (AssertionError, TypeError, ValueError):
         out['msg'] = 'Please, send valid values.'
         out['error'] = True
 
@@ -71,7 +72,8 @@ def list_poi():
 
     out = {
         'error': False,
-        'msg': ''
+        'msg': '',
+        'result': []
     }
 
     valid = lambda v: None if not bool(v and len(v)) else int(v)
