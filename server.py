@@ -94,4 +94,6 @@ def list_poi():
     return jsonify(out)
 
 if __name__ == "__main__":
+    db.init_db()
+
     app.run()
