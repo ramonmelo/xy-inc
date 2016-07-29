@@ -56,22 +56,22 @@ python server.py # Will run the server on http://localhost:5000
 ```json
 // If no error found
 {
-    "error": false,
-    "msg": "Saved with success."
+  "error": false,
+  "msg": "Saved with success."
 }
 ```
 ```
 // If not all data was sent
 {
-    "error": true,
-    "msg": "Please, send all data values."
+  "error": true,
+  "msg": "Please, send all data values."
 }
 ```
 ```
 // If the data was invalid
 {
-    "error": true,
-    "msg": "Please, send valid values."
+  "error": true,
+  "msg": "Please, send valid values."
 }
 ```
 
