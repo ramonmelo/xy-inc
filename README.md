@@ -123,3 +123,10 @@ python tests.py # Will run all tests of the application
   "result": []
 }
 ```
+```
+// If the data was invalid
+{
+  "error": true,
+  "msg": "Please, send valid values."
+}
+```
