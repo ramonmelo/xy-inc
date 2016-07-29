@@ -21,6 +21,12 @@ python server.py # Will run the server on http://localhost:5000
 
 > If the database file (`db.sqlite`) do not exist, it will be created at the first execution of the server.
 
+#### How run the tests ?
+
+```bash
+python tests.py # Will run all tests of the application
+```
+
 #### Which request can I make ?
 
 > **View Routes**
