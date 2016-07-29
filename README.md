@@ -66,14 +66,14 @@ python tests.py # Will run all tests of the application
   "msg": "Saved with success."
 }
 ```
-```
+```json
 // If not all data was sent
 {
   "error": true,
   "msg": "Please, send all data values."
 }
 ```
-```
+```json
 // If the data was invalid
 {
   "error": true,
@@ -123,7 +123,7 @@ python tests.py # Will run all tests of the application
   "result": []
 }
 ```
-```
+```json
 // If the data was invalid
 {
   "error": true,
