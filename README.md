@@ -19,7 +19,7 @@
 python server.py # Will run the server on http://localhost:5000
 ```
 
-> If the database file (`database.sqlite`) do not exist, it will be created at the first execution of the server.
+> If the database file (`db.sqlite`) do not exist, it will be created at the first execution of the server.
 
 #### Which request can I make ?
 
@@ -110,7 +110,7 @@ python server.py # Will run the server on http://localhost:5000
 }
 ```
 ```json
-// If no POI was registered or based on filters, all POI were filtered
+// If no POI were registered or based on filters, all POI were filtered
 {
   "error": true,
   "msg": "No results were found with current filters.",
