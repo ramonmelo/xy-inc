@@ -1,16 +1,63 @@
 {% extends "index.html" %}
 
+{% block title %}Find{% endblock %}
+
 {% block content %}
 
 <div class="row">
-
     <div class="col-md-12">
-    </div>
 
+        <div class="panel panel-default">
+            <div class="panel-heading">Search</div>
+            <div class="panel-body">
+                <form id="find_form" class="form-inline">
+                    <div class="form-group">
+                        <label for="x_position">X Pos.</label>
+                        <input type="number" class="form-control" id="x_position" placeholder="X" min="0" name="x">
+                    </div>
+                    <div class="form-group">
+                        <label for="y_position">Y Pos.</label>
+                        <input type="number" class="form-control" id="y_position" placeholder="Y" min="0" name="y">
+                    </div>
+                    <div class="form-group">
+                        <label for="distance">Distance</label>
+                        <input type="number" class="form-control" id="distance" placeholder="distance" min="0" name="distance">
+                    </div>
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Result</div>
+            <div class="panel-body">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>X Pos.</th>
+                            <th>Y Pos.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="/static/find.js"></script>
+<script type="text/javascript" src="/static/js/find.js"></script>
 {% endblock %}
