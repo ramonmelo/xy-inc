@@ -9,7 +9,8 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-    DATABASE = os.path.join(app.root_path, 'db.sqlite')
+    DATABASE = os.path.join(app.root_path, 'db.sqlite'),
+    DATABASE_SCHEME = os.path.join(app.root_path, 'scheme.sql')
 ))
 
 db = DBManager(app)

@@ -9,6 +9,15 @@ class DBManager(object):
     def __init__(self, app):
         """Init the connection with the database"""
         self.db = sql.connect(app.config['DATABASE'])
+        self._init_db(app)
+
+    def _init_db(self, app):
+        with open(app.config['DATABASE_SCHEME'], 'r') as scheme_file:
+
+            cursor = self.db.cursor()
+            cursor.execute(scheme_file.read())
+
+            self.db.commit()
 
     def close(self):
         """Close the connection with the database"""
