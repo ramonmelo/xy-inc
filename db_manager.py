@@ -38,7 +38,7 @@ class DBManager(object):
         """List all POI within the range"""
 
         has_filter = False
-        if x_base and y_base and distance:
+        if (x_base is not None) and (y_base is not None) and (distance is not None):
             assert type(x_base) is int
             assert type(y_base) is int
             assert type(distance) is int
