@@ -81,6 +81,11 @@ def list_poi():
         distance = valid(distance)
 
         out['result'] = db.list_poi(x, y, distance)
+
+        if len(out['result']) == 0:
+            out['msg'] = "No results were found with current filters."
+            out['error'] = True
+
     except (AssertionError, TypeError, ValueError):
         out['msg'] = "Please, send valid values."
         out['error'] = True
