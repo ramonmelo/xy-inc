@@ -1,5 +1,13 @@
 $(function() {
 
+    alert = $("#alert_box");
+
+    var show_alert = function(msg) {
+        alert.find("#alert_content").html(msg);
+        alert.toggleClass('hidden show');
+        setTimeout(function() { alert.toggleClass('hidden show') }, 5000);
+    }
+
     form = $("#find_form");
     table = $("#result_table");
 
@@ -11,19 +19,29 @@ $(function() {
         out_data = $(form).serialize();
 
         $.get('/list_poi/', out_data, function(data, status) {
-            if (!data['error']) {
-                for (var i = 0; i < data['result'].length; i++) {
-                    obj = data['result'][i];
 
-                    row = row_template.clone();
+            if (status == 'success') {
 
-                    row.append( $("<td></td>").html(obj['name']) );
-                    row.append( $("<td></td>").html(obj['x']) );
-                    row.append( $("<td></td>").html(obj['y']) );
+                if (!data['error']) {
+                    for (var i = 0; i < data['result'].length; i++) {
+                        obj = data['result'][i];
 
-                    table.append(row);
+                        row = row_template.clone();
+
+                        row.append( $("<td></td>").html(obj['name']) );
+                        row.append( $("<td></td>").html(obj['x']) );
+                        row.append( $("<td></td>").html(obj['y']) );
+
+                        table.append(row);
+                    }
+                } else {
+                    show_alert(data['msg']);
                 }
+
+            } else {
+                show_alert('An error occurred during the request. Please try again.');
             }
+
         });
     };
 

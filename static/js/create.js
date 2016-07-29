@@ -2,6 +2,12 @@ $(function() {
 
     alert = $("#alert_box");
 
+    var show_alert = function(msg) {
+        alert.find("#alert_content").html(msg);
+        alert.toggleClass('hidden show');
+        setTimeout(function() { alert.toggleClass('hidden show') }, 5000);
+    }
+
     form = $("#create_form");
 
     form.on('submit', function(evt) {
@@ -14,7 +20,7 @@ $(function() {
 
             if (status == 'success') {
                 alert.addClass(data['error'] ? 'alert-warning' : 'alert-info');
-                alert.find("#alert_content").html(data['msg']);
+                show_alert(data['msg']);
 
                 if (!data['error']) {
                     form.trigger("reset");
@@ -22,11 +28,8 @@ $(function() {
 
             } else {
                 alert.addClass('alert-warning');
-                alert.find("#alert_content").html('An error occurred during the request. Please try again.');
+                show_alert('An error occurred during the request. Please try again.');
             }
-
-            alert.toggleClass('hidden show');
-            setTimeout(function() { alert.toggleClass('hidden show') }, 5000);
         });
     });
 });
