@@ -73,14 +73,15 @@ def list_poi():
         'msg': ''
     }
 
+    valid = lambda v: None if not bool(v and len(v)) else int(v)
+
     try:
-        if x and y and distance:
-            x = int(x)
-            y = int(y)
-            distance = int(distance)
+        x = valid(x)
+        y = valid(y)
+        distance = valid(distance)
 
         out['result'] = db.list_poi(x, y, distance)
-    except (AssertionError, TypeError):
+    except (AssertionError, TypeError, ValueError):
         out['msg'] = "Please, send valid values."
         out['error'] = True
 
